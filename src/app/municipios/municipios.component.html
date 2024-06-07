@@ -1,0 +1,36 @@
+<div>
+    <h2>Consulta Municipios</h2>
+    <label for="estado">Ingresa el nombre del estado:</label>
+    <input type="text" id="estado" [(ngModel)]="estado">
+    <button (click)="buscarMunicipios()">Buscar</button>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  </div>
+  
+  <div *ngIf="municipios.length > 0">
+    <h3>Municipios de {{ estado }}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th>Humedad Relativa</th>
+          <th>Longitud</th>
+          <th>Latitud</th>
+          <th>Temperatura (°C)</th>
+          <th>Velocidad del Viento (km/h)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let municipio of municipios">
+          <td>{{ municipio.name }}</td>
+          <td>{{ municipio.state }}</td>
+          <td>{{ municipio.relativehumidity }}</td>
+          <td>{{ municipio.longitude }}</td>
+          <td>{{ municipio.latitude }}</td>
+          <td>{{ municipio.tempc }}</td>
+          <td>{{ municipio.windspeedkm }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
