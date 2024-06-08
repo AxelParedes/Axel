@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'navbar', component: NavbarComponent },
+  { path: 'inicio', component: InicioComponent },
   { path: 'municipio', component: MunicipiosComponent },
   { path: 'weather', component: WeatherComponent },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }

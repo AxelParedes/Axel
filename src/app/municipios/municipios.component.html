@@ -1,36 +1,47 @@
-<div>
-    <h2>Consulta Municipios</h2>
-    <label for="estado">Ingresa el nombre del estado:</label>
-    <input type="text" id="estado" [(ngModel)]="estado">
-    <button (click)="buscarMunicipios()">Buscar</button>
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>Consulta Municipios</h2>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="estado" class="form-label">Ingresa el nombre del estado:</label>
+        <input type="text" id="estado" class="form-control" [(ngModel)]="estado">
+      </div>
+      <button class="btn btn-primary" (click)="buscarMunicipios()">Buscar</button>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+    </div>
   </div>
-  
-  <div *ngIf="municipios.length > 0">
-    <h3>Municipios de {{ estado }}</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Estado</th>
-          <th>Humedad Relativa</th>
-          <th>Longitud</th>
-          <th>Latitud</th>
-          <th>Temperatura (°C)</th>
-          <th>Velocidad del Viento (km/h)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let municipio of municipios">
-          <td>{{ municipio.name }}</td>
-          <td>{{ municipio.state }}</td>
-          <td>{{ municipio.relativehumidity }}</td>
-          <td>{{ municipio.longitude }}</td>
-          <td>{{ municipio.latitude }}</td>
-          <td>{{ municipio.tempc }}</td>
-          <td>{{ municipio.windspeedkm }}</td>
-        </tr>
-      </tbody>
-    </table>
+
+  <div *ngIf="municipios && municipios.length > 0" class="card mt-4">
+    <div class="card-header">
+      <h3>Municipios de {{ estado }}</h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Humedad Relativa</th>
+            <th>Longitud</th>
+            <th>Latitud</th>
+            <th>Temperatura (°C)</th>
+            <th>Velocidad del Viento (km/h)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let municipio of municipios">
+            <td>{{ municipio.name }}</td>
+            <td>{{ municipio.state }}</td>
+            <td>{{ municipio.relativehumidity }}</td>
+            <td>{{ municipio.longitude }}</td>
+            <td>{{ municipio.latitude }}</td>
+            <td>{{ municipio.tempc }}</td>
+            <td>{{ municipio.windspeedkm }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  
+</div>

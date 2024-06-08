@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { MunicipiosService } from '../municipios.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 interface Municipio {
   name: string;
@@ -14,33 +15,38 @@ interface Municipio {
 }
 
 @Component({
-  selector: 'app-municipios',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule, HttpClientModule, CommonModule],
+  selector: 'app-municipios',
   templateUrl: './municipios.component.html',
   styleUrls: ['./municipios.component.css']
 })
 export class MunicipiosComponent {
   estado: string = '';
   municipios: Municipio[] = [];
-  estadosValidos: string[] = ['Aguascalientes', 'Baja California', 'Baja California Sur', 'Chihuahua', 'Campeche', 'Coahuila'];
   errorMessage: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private municipiosService: MunicipiosService) {}
 
   buscarMunicipios() {
-    if (this.estadosValidos.includes(this.estado)) {
-      this.errorMessage = '';
-      this.http.get<any>(`https://api.datos.gob.mx/v1/condiciones-atmosfericas?estado=${this.estado}`).subscribe(
-        data => {
-          this.municipios = data.results;
-        },
-        error => {
-          console.error('Error al obtener los municipios:', error);
+    this.municipiosService.getMunicipios().subscribe(
+      data => {
+        console.log('Datos obtenidos:', data);
+        if (data.results) {
+          this.municipios = data.results.filter((municipio: Municipio) => municipio.state.toLowerCase() === this.estado.toLowerCase());
+          if (this.municipios.length === 0) {
+            this.errorMessage = 'No se encontraron municipios para el estado ingresado.';
+          } else {
+            this.errorMessage = '';
+          }
+        } else {
+          this.errorMessage = 'No se encontraron datos en la respuesta de la API.';
         }
-      );
-    } else {
-      this.errorMessage = 'Por favor ingresa un estado válido.';
-    }
+      },
+      error => {
+        this.errorMessage = 'Error al obtener los datos. Inténtelo de nuevo más tarde.';
+        console.error('Error al obtener los datos:', error);
+      }
+    );
   }
 }
