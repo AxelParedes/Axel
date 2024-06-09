@@ -8,7 +8,9 @@
         <label for="estado" class="form-label">Ingresa el nombre del estado:</label>
         <input type="text" id="estado" class="form-control" [(ngModel)]="estado">
       </div>
-      <button class="btn btn-primary" (click)="buscarMunicipios()">Buscar</button>
+
+        <a id="button-1" class="button" (click)="buscarMunicipios()">Buscar <i class="fas fa-search" id="arrow-hover"></i> </a>
+
       <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
     </div>
   </div>
@@ -44,4 +46,8 @@
       </table>
     </div>
   </div>
+</div>
+
+<div class="d-flex justify-content-center my-3">
+  <hr class="my-5 hr text-white">
 </div>

@@ -10,10 +10,10 @@
           <option *ngFor="let location of locations" [ngValue]="location">{{ location.name }}</option>
         </select>
       </div>
-      <button class="btn btn-primary" (click)="getWeather()">Consultar Clima</button>
+      <a id="button-1" class="button" (click)="getWeather()">Consultar <i class="fas fa-search" id="arrow-hover"></i> </a>
     </div>
   </div>
-  
+
   <div *ngIf="weatherData" class="card mt-4">
     <div class="card-header">
       <h3>Datos del Clima en {{ weatherData.city }}, {{ weatherData.country }}</h3>

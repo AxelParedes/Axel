@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import { MunicipiosComponent } from '../municipios/municipios.component';
 
 
 @Component({
@@ -11,5 +11,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
+  
 }
