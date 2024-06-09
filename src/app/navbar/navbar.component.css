@@ -1,0 +1,20 @@
+.custom-navbar {
+  height: 90px;
+}
+
+.custom-navbar .navbar-brand img {
+  height: 80px;
+}
+
+@media (min-width: 500px) {
+  .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+  .navbar-toggler {
+    display: block;
+  }
+}
+.navbar-nav .nav-item .nav-link:hover {
+  color: rgb(70, 215, 255);
+}

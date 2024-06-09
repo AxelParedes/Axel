@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>Consulta el Clima</h2>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="location" class="form-label">Selecciona un Estado:</label>
+        <select id="location" class="form-select" [(ngModel)]="selectedLocation">
+          <option *ngFor="let location of locations" [ngValue]="location">{{ location.name }}</option>
+        </select>
+      </div>
+      <a id="button-1" class="button" (click)="getWeather()">Consultar <i class="fas fa-search" id="arrow-hover"></i> </a>
+    </div>
+  </div>
+
+  <div *ngIf="weatherData" class="card mt-4">
+    <div class="card-header">
+      <h3>Datos del Clima en {{ weatherData.city }}, {{ weatherData.country }}</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Longitud:</strong> {{ weatherData.lon }}</p>
+      <p><strong>Latitud:</strong> {{ weatherData.lat }}</p>
+      <p><strong>Descripción:</strong> {{ weatherData.description }}</p>
+      <p><strong>Sensación térmica:</strong> {{ weatherData.temp.current | number:'1.0-2' }} °C / {{ weatherData.temp.currentF | number:'1.0-2' }} °F</p>
+      <p><strong>Temperatura Mínima:</strong> {{ weatherData.temp.min | number:'1.0-2' }} °C / {{ weatherData.temp.minF | number:'1.0-2' }} °F</p>
+      <p><strong>Temperatura Máxima:</strong> {{ weatherData.temp.max | number:'1.0-2' }} °C / {{ weatherData.temp.maxF | number:'1.0-2' }} °F</p>
+      <p><strong>Humedad:</strong> {{ weatherData.humidity }} %</p>
+      <p><strong>Nubes:</strong> {{ weatherData.clouds }} %</p>
+    </div>
+  </div>
+</div>
