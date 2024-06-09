@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class MunicipiosService {
 
-  private apiUrl = 'https://api.datos.gob.mx/v1/condiciones-atmosfericas';
+  private apiUrl = 'http://localhost:3000/municipios';
 
   constructor(private http: HttpClient) { }
 
