@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { MunicipiosService } from '../municipios.service';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface Municipio {
   name: string;
@@ -16,7 +15,7 @@ interface Municipio {
 
 @Component({
   standalone: true,
-  imports: [FormsModule, HttpClientModule, CommonModule],
+  imports: [FormsModule, CommonModule],
   selector: 'app-municipios',
   templateUrl: './municipios.component.html',
   styleUrls: ['./municipios.component.css']
@@ -40,10 +39,12 @@ export class MunicipiosComponent {
             this.errorMessage = '';
           }
         } else {
+          this.municipios = [];
           this.errorMessage = 'No se encontraron datos en la respuesta de la API.';
         }
       },
       error => {
+        this.municipios = []; // Asegúrate de limpiar los datos anteriores en caso de error
         this.errorMessage = 'Error al obtener los datos. Inténtelo de nuevo más tarde.';
         console.error('Error al obtener los datos:', error);
       }
